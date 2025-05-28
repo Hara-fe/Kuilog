@@ -7,12 +7,12 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
-{
+    {
     /**
      * Seed the application's database.
      */
     public function run(): void
-    {
+        {
         // User::factory(10)->create();
 
         // User::factory()->create([
@@ -20,9 +20,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call([
-        CategorySeeder::class,
+      $this->call([
+            AreaSeeder::class,
+            CategorySeeder::class,
         ]);
-        \App\Models\Sale::factory(1000)->create();
+        }
     }
-}
