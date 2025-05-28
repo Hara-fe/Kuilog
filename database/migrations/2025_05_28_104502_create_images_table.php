@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->bigint('shop_id');
+            $table->unsignedBigInteger('shop_id'); // ✅ 修正箇所
             $table->string('filename');
             $table->string('title');
             $table->timestamps();
 
-            //外部キー設定
-            $table->foreign('shop_id')->references('id')->on('shops');
-
+            // 外部キー設定
+            $table->foreign('shop_id')
+                  ->references('id')
+                  ->on('shops')
+                  ->onDelete('cascade');
         });
     }
 
