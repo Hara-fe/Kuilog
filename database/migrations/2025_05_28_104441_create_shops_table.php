@@ -23,6 +23,12 @@ return new class extends Migration
             $table->int('area_id');
             $table->string('local');
             $table->boolean('on_off');
+
+            //外部キー設定
+            $table->foreign('owner_id')->references('id')->on('users');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('area_id')->references('id')->on('areas');
+
         });
     }
 

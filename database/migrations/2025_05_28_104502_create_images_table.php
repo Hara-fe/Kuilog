@@ -13,10 +13,14 @@ return new class extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->id();
-            $table->int('shop_id');
+            $table->bigint('shop_id');
             $table->string('filename');
             $table->string('title');
             $table->timestamps();
+
+            //外部キー設定
+            $table->foreign('shop_id')->references('id')->on('shops');
+
         });
     }
 

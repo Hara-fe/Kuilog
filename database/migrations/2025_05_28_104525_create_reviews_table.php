@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('reviewer_name');
             $table->double('review');
             $table->text('comment');
-            $table->timestamps('created_at');
+            $table->datetime('created_at');
+
+            //外部キー設定
+            $table->foreign('shop_id')->references('id')->on('shops');
+            $table->foreign('reviewer_name')->references('name')->on('users');
+
         });
     }
 
