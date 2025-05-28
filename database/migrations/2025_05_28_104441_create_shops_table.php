@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
+            $table->bigint('owner_id');
+            $table->string('name');
+            $table->text('information');
+            $table->string('filename');
+            $table->string('active');
             $table->timestamps();
+            $table->int('category_id');
+            $table->int('area_id');
+            $table->string('local');
+            $table->boolean('on_off');
         });
     }
 
