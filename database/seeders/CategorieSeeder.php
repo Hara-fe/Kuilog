@@ -2,16 +2,38 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class CategorieSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        $types = [
+            '和食' => ['寿司', '天ぷら', 'うどん', 'そば', '焼き鳥', 'とんかつ', 'すき焼き', 'おでん'],
+            '洋食' => ['ハンバーグ', 'ステーキ', 'パスタ', 'オムライス', 'グラタン', 'ピザ', 'シチュー'],
+            '中華' => ['餃子', 'ラーメン', 'チャーハン', '麻婆豆腐', '酢豚', '八宝菜', '中華そば'],
+            'エスニック' => ['インドカレー', 'タイカレー', 'フォー', 'ナシゴレン', 'ガパオライス', 'トムヤムクン'],
+            '韓国料理' => ['ビビンバ', 'チヂミ', 'プルコギ', 'キムチチゲ', 'サムギョプサル'],
+            'ファストフード' => ['ハンバーガー', 'フライドチキン', 'ホットドッグ', 'サンドイッチ'],
+            'カフェ' => ['パンケーキ', 'クレープ', 'タルト', 'パフェ', 'アフタヌーンティー'],
+            'イタリアン' => ['カルボナーラ', 'マルゲリータ', 'ラザニア', 'リゾット'],
+            'フレンチ' => ['キッシュ', 'ブイヤベース', '鴨のコンフィ', 'エスカルゴ'],
+            'スペイン料理' => ['パエリア', 'アヒージョ', 'トルティージャ', 'ガスパチョ'],
+            'ベーカリー' => ['クロワッサン', '食パン', 'メロンパン', 'フランスパン'],
+        ];
+
+        $categories = [];
+
+        foreach ($types as $type => $labels) {
+            foreach ($labels as $label) {
+                $categories[] = [
+                    'type' => $type,
+                    'label' => $label,
+                ];
+            }
+        }
+
+        DB::table('categories')->insert($categories);
     }
 }
