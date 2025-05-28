@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->bigint('shop_id');
+            $table->string('reviewer_name');
+            $table->double('review');
+            $table->text('comment');
+            $table->timestamps('created_at');
         });
     }
 
