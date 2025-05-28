@@ -2,6 +2,14 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\MainController;
+use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AcountController;
+use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\ShopController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -20,10 +28,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/register',[RegisterController::class,'create']);
     Route::post('/register',[RegisterController::class,'store']);
-
-    Route::middleware(['auth','can:all_user'])->group(function(){
-        Route::get('/login',[LoginController::class,'loginForm']);
-        Route::post('/login',[LoginController::class,'login']);
+    Route::get('/login',[LoginController::class,'loginForm']);
+    Route::post('/login',[LoginController::class,'login']);
+    
+   Route::middleware(['auth','can:all_user'])->group(function(){    
         Route::get('/main',[MainController::class,'index']);
         Route::get('/search',[SearchController::class,'index']);
         Route::post('/acount',[AcountController::class,'show']);
