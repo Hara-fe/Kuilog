@@ -9,10 +9,8 @@ use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades;
 use App\Http\Models\User;
-use App\Http\Models\Shop;
-use App\Models\Review;
 
-class ReviewController extends Controller
+class RegisterController extends Controller
 {
     //
     public function create(){
