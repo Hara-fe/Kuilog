@@ -2,31 +2,28 @@
 
 namespace Database\Factories;
 
+use App\Models\Category; // 追加
+use App\Models\Area;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Carbon\Carbon;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Shop>
- */
 class ShopFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
     public function definition(): array
     {
         return [
-            //
-            'owner_id'=>User::factory(),
-            'name'=>$this->faker->company(),
-            'information'=>$this->faker->realText(20),
-            'created_at' => $this->faker->dateTimeBetween('-5 years',new Carbon(),'Asia/Tokyo'),
-            'updated_at' => $this->faker->dateTimeBetween('-5 years', new Carbon(), 'Asia/Tokyo'),
-            'category_id'=>Category::factory(),
-            'area_id'=>Area::factory(),
-            'local'=>$this->faker->streetAddress(),
-            'on_off'=>$this->faker->boolean()
+            'owner_id' => User::factory(),
+            'name' => $this->faker->company(),
+            'information' => $this->faker->realText(100),
+            'created_at' => $this->faker->dateTimeBetween('-5 years', now(), 'Asia/Tokyo'),
+            'updated_at' => $this->faker->dateTimeBetween('-5 years', now(), 'Asia/Tokyo'),
+            'category_id' => Category::inRandomOrder()->first()?->id ?? 1, // ここが修正ポイント
+            'area_id' => Area::inRandomOrder()->first()?->id ?? 1,
+            'local' => $this->faker->streetAddress(),
+            'on_off' => $this->faker->boolean(),
+            'filename' => 'https://placehold.jp/150x150.png'
+
         ];
     }
 }
