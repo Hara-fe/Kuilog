@@ -8,18 +8,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades;
-use App\Http\Models\User;
 use App\Http\Models\Shop;
-use App\Models\Review;
 
-class ReviewController extends Controller
+class MainController extends Controller
 {
     //
-    public function create(){
-
-    }
-
-    public function store(){
+    public function index(){
 
     }
 }
