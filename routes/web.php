@@ -17,5 +17,30 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+    Route::get('/register',[RegisterController::class,'create']);
+    Route::post('/register',[RegisterController::class,'store']);
+
+    Route::middleware(['auth','can:all_user'])->group(function(){
+        Route::get('/login',[LoginController::class,'loginForm']);
+        Route::post('/login',[LoginController::class,'login']);
+        Route::get('/main',[MainController::class,'index']);
+        Route::get('/search',[SearchController::class,'index']);
+        Route::post('/acount',[AcountController::class,'show']);
+        Route::post('/acount',[AcountController::class,'edit']);
+        Route::post('/acount',[AcountController::class,'update']);
+        Route::get('/shop',[ShopController::class,'show']);
+        Route::get('/review',[ReviewController::class,'create']);
+        Route::get('/review/complete',[ReviewController::class,'store']);
+    });
+
+    Route::middleware(['auth','can:admin'])->group(function(){
+        Route::post('/shop/register',[ShopController::class,'create']);
+        Route::post('/shop/register/complete',[ShopController::class,'store']);
+        Route::post('/shop/edit',[ShopController::class,'edit']);
+        Route::post('/shop/update',[ShopController::class,'update']);
+        Route::post('/shop/review_seeing',[ShopController::class,'seeing']);
+    });
+
 require __DIR__.'/auth.php';
 
