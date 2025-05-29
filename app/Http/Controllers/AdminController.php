@@ -22,18 +22,22 @@ class AdminController extends Controller
     }
 
     
-    public function update(Request $request,string $id){
-
-        $user = User::findOrfail($id);
+    public function update(Request $request, string $id)
+    {
+        $user = User::findOrFail($id);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-       if ($request->filled('password')) {
-        $user->password = Hash::make($request->input('password'));
-    }
+
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->role = $request->input('role');
 
         $user->save();
 
-        return redirect()->route('admin.index')->with('success','ユーザー情報を更新しました');
+        return redirect()->route('admin.index')->with('success', 'ユーザー情報を更新しました');
     }
+
 }

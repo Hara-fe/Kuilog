@@ -9,5 +9,10 @@ class Review extends Model
 {
     /** @use HasFactory<\Database\Factories\ReviewFactory> */
     use HasFactory;
-    protected $fillable = ['review','comment'];
+   protected $fillable = [
+    'user_id',
+    'shop_id',
+    'review',
+    'comment',
+];
 }

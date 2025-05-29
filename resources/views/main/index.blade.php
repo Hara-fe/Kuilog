@@ -22,13 +22,23 @@
     @endcan
 
         @auth
-    <div class="flex justify-end mb-6">
-        <a href="{{ route('acount.edit', ['id' => Auth::id()]) }}"
-            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-                アカウント編集
-        </a>
-    </div>
-    @endauth
+        <div class="flex justify-end mb-6">
+            <a href="{{ route('acount.edit', ['id' => Auth::id()]) }}"
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                    アカウント編集
+            </a>
+        </div>
+        @endauth
+
+        @can('admin')
+        <div class="flex justify-end mb-6">
+            <a href="{{ route('admin.index') }}"
+            class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">
+                管理者画面へ
+            </a>
+        </div>
+        @endcan
+
 
     @if ($shops->count() === 0)
         <p class="text-center text-gray-500">該当する店舗が見つかりませんでした。</p>

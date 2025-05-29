@@ -23,10 +23,11 @@
         </div>
 
         <div class="mt-6">
-            <a href="{{ route('review.create', ['shop_id' => $shop->id]) }}"
-               class="inline-block bg-orange-500 text-white font-semibold px-6 py-3 rounded-lg shadow hover:bg-orange-600 transition">
-                このお店をレビューする
+            <a href="{{ route('review.create', ['shop' => $shop->id]) }}"
+            class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+            口コミ投稿
             </a>
+
         </div>
     </div>
 </div>
