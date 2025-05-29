@@ -25,7 +25,7 @@ class AppServiceProvider extends ServiceProvider
             return $user->role >= 5;
         });
 
-        Gate::define('all-user', function($user){
+        Gate::define('all_user', function($user){
             return $user->role >= 0;
         });
 
