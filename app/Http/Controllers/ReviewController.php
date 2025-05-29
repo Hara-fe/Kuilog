@@ -16,10 +16,19 @@ class ReviewController extends Controller
 {
     //
     public function create(){
-
+        return view('review.review');
     }
 
-    public function store(){
+    public function store(Request $request){
 
+        $review = $request -> input('review');
+        $comment = $request -> input('comment');
+        
+        Review::store([
+        'review' => $review,
+        'comment' => $comment,
+        ]);
+
+        return view('review.review_complete');
     }
 }

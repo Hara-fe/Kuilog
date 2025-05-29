@@ -14,7 +14,7 @@ class AcountController extends Controller
 {
     //
     public function show(){
-
+        
     }
 
     public function edit(){

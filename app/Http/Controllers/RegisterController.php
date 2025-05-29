@@ -14,10 +14,18 @@ class RegisterController extends Controller
 {
     //
     public function create(){
-
+        
+        //アカウント登録　フォームに送る
+        return view('register');
     }
 
-    public function store(){
+    public function store(Request $request){
 
+        $name = $request -> input('name');
+        $email = $request -> input('email');
+        $password = $request -> input('password');
+        $role = $request -> input('role');
+
+        return view('register_complete');
     }
 }
