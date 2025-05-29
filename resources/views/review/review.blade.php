@@ -6,12 +6,12 @@
     <title>口コミ投稿</title>
 </head>
 <body>
-    <form action="" method="POST">
+    <form action="{{ route('/review/complete')}}" method="POST">
         @csrf
-    <label for="reviw">評価</label>
+    <label for="review">評価</label>
     <input type="number" name="review" id="review" min="0" max="5" step="0.1" required>
     <label for="comment">コメント</label>
-    <input type="text" name="comment" id="comment" required>
+    <input type="textarea" name="comment" id="comment" required>
     <button type="submit">送信</button>
     </form>
 </body>

@@ -17,7 +17,7 @@
     <button type="submit">送信</button>
 </form>
 <form 
-    action="{{route('admin.destroy', $admin) }}" method="post">
+    action="{{route('admin.destroy', $user) }}" method="post">
         @csrf
         @method('DELETE')
        <input type="submit" name="delete" value="削除">
