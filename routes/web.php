@@ -9,6 +9,7 @@ use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AcountController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AdminController;
 
 
 Route::get('/', function () {
@@ -30,6 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/register',[RegisterController::class,'store']);
     Route::get('/login',[LoginController::class,'loginForm']);
     Route::post('/login',[LoginController::class,'login']);
+    Route::get('main',function(){
+        return view('main.main');
+    })->middleware(['auth'])->name('main');
+    Route::get('/main', function() {return view('main.main');})->name('main');
+    Route::get('/shop/{shop}',[ShopController::class,'show'])->name('shop.show');
     
    Route::middleware(['auth','can:all_user'])->group(function(){    
         Route::get('/main',[MainController::class,'index'])->name('main.index');
@@ -50,6 +56,9 @@ Route::middleware('auth')->group(function () {
         Route::post('/shop/edit',[ShopController::class,'edit']);
         Route::post('/shop/update',[ShopController::class,'update']);
         Route::post('/shop/review_seeing',[ShopController::class,'seeing']);
+        Route::post('/admin_acount',[AdminController::class,'index']);
+        Route::post('/admin_acount/edit',[AdminController::class,'edit']);
+        Route::post('/admin_acount/update',[AdminController::class,'update']);
     });
 
 require __DIR__.'/auth.php';

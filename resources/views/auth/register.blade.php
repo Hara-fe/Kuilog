@@ -48,5 +48,6 @@
                 {{ __('Register') }}
             </x-primary-button>
         </div>
+        <input type="hidden" name="role" id="role" value=0>
     </form>
 </x-guest-layout>
