@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash; 
 
 class AdminController extends Controller
 {
@@ -23,7 +24,7 @@ class AdminController extends Controller
     
     public function update(Request $request,string $id){
 
-        $user = User::findorfail($id);
+        $user = User::findOrfail($id);
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
