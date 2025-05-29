@@ -16,9 +16,3 @@
     </div>
     <button type="submit">送信</button>
 </form>
-<form 
-    action="{{route('acount.destroy', $user) }}" method="post">
-        @csrf
-        @method('DELETE')
-       <input type="submit" name="delete" value="削除">
-</form>

@@ -27,11 +27,12 @@ Route::middleware('auth')->group(function () {
 });
 
 
-    Route::get('/register',[RegisterController::class,'create']);
-    Route::post('/register',[RegisterController::class,'store']);
-    Route::get('main',function(){
-        return view('main.main');
-    })->middleware(['auth'])->name('main');
+    Route::get('/register/complete', function () {
+    return view('register.complete');
+})->name('register.complete');
+    // Route::get('main',function(){
+    //     return view('main.main');
+    // })->middleware(['auth'])->name('main');
     Route::get('/main', function() {return view('main.main');})->name('main');
     Route::get('/shop/{shop}',[ShopController::class,'show'])->name('shop.show');
     
@@ -40,9 +41,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/main/create', [MainController::class, 'create'])->name('main.create');
         Route::post('/main/store', [MainController::class, 'store'])->name('main.store');
         Route::get('/search',[SearchController::class,'index']);
-        Route::post('/acount',[AcountController::class,'show']);
-        Route::post('/acount/edit',[AcountController::class,'edit']);
-        Route::post('/acount/update',[AcountController::class,'update']);
+        // Route::get('/acount',[AcountController::class,'show'])->name('acount');
+        Route::get('/acount/{id}', [AcountController::class, 'show'])->name('acount.show');
+        Route::get('/acount/edit/{id}',[AcountController::class,'edit'])->name('acount.edit');
+        Route::post('/acount/update',[AcountController::class,'update'])->name('acount.update');
         Route::get('/shop',[ShopController::class,'show']);
         Route::get('/review',[ReviewController::class,'create'])->name('review.create');
         Route::get('/review/complete',[ReviewController::class,'store']);

@@ -26,6 +26,6 @@ class RegisterController extends Controller
         $password = $request -> input('password');
         $role = $request -> input('role');
 
-        return view('register_complete');
+        return redirect()->route('register.complete');
     }
 }
