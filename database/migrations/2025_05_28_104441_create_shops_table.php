@@ -10,6 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
+
         {
             Schema::create('shops', function (Blueprint $table) {
                 $table->id();
@@ -17,7 +18,7 @@ return new class extends Migration
                 $table->string('name');
                 $table->text('information');
                 $table->string('filename');
-                $table->string('active');
+                $table->string('active')->nullable();
                 $table->timestamps();
                 $table->unsignedBigInteger('category_id');
                 $table->unsignedBigInteger('area_id');
