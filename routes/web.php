@@ -29,8 +29,6 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/register',[RegisterController::class,'create']);
     Route::post('/register',[RegisterController::class,'store']);
-    Route::get('/login',[LoginController::class,'loginForm']);
-    Route::post('/login',[LoginController::class,'login']);
     Route::get('main',function(){
         return view('main.main');
     })->middleware(['auth'])->name('main');
@@ -43,8 +41,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/main/store', [MainController::class, 'store'])->name('main.store');
         Route::get('/search',[SearchController::class,'index']);
         Route::post('/acount',[AcountController::class,'show']);
-        Route::post('/acount',[AcountController::class,'edit']);
-        Route::post('/acount',[AcountController::class,'update']);
+        Route::post('/acount/edit',[AcountController::class,'edit']);
+        Route::post('/acount/update',[AcountController::class,'update']);
         Route::get('/shop',[ShopController::class,'show']);
         Route::get('/review',[ReviewController::class,'create'])->name('review.create');
         Route::get('/review/complete',[ReviewController::class,'store']);
