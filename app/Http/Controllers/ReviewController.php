@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades;
-use App\Http\Models\User;
-use App\Http\Models\Shop;
+use App\Models\User;
+use App\Models\Shop;
 use App\Models\Review;
 
 class ReviewController extends Controller
@@ -29,7 +29,7 @@ class ReviewController extends Controller
         'comment' => $comment,
         ]);
 
-        
+
 
         return view('review.review_complete');
     }
