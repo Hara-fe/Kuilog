@@ -24,10 +24,12 @@ class ReviewController extends Controller
         $review = $request -> input('review');
         $comment = $request -> input('comment');
         
-        Review::store([
+        Review::create([
         'review' => $review,
         'comment' => $comment,
         ]);
+
+        
 
         return view('review.review_complete');
     }

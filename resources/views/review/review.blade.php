@@ -7,6 +7,7 @@
 </head>
 <body>
     <form action="" method="POST">
+        @csrf
     <label for="reviw">評価</label>
     <input type="number" name="review" id="review" min="0" max="5" step="0.1" required>
     <label for="comment">コメント</label>

@@ -27,7 +27,9 @@ class AdminController extends Controller
 
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        $user->role= $request->input('role');
+       if ($request->filled('password')) {
+        $user->password = Hash::make($request->input('password'));
+    }
 
         $user->save();
 
