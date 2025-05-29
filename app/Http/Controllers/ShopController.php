@@ -9,33 +9,27 @@ use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades;
 use App\Http\Models\User;
-use App\Http\Models\Shop;
+use App\Models\Shop;
 use App\Models\Review;
 
 class ShopController extends Controller
 {
     //
-    public function show(){
-
+    public function show($id)
+    {
+        $shop = Shop::with('category')->findOrFail($id);
+        return view('shop.show', compact('shop'));
     }
 
-    public function create(){
-
-    }
-
-    public function store(){
-
-    }
-
-    public function edit(){
+    public function edit(){ //お店の情報を編集
 
     }
     
-    public function update(){
+    public function update(){ //編集の確認画面＋DBに送信
 
     }
 
-    public function seeing(){
+    public function seeing(){ //口コミ閲覧
 
     }
 }

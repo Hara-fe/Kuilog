@@ -38,13 +38,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/shop/{shop}',[ShopController::class,'show'])->name('shop.show');
     
    Route::middleware(['auth','can:all_user'])->group(function(){    
-        Route::get('/main',[MainController::class,'index']);
+        Route::get('/main',[MainController::class,'index'])->name('main.index');
+        Route::get('/main/create', [MainController::class, 'create'])->name('main.create');
+        Route::post('/main/store', [MainController::class, 'store'])->name('main.store');
         Route::get('/search',[SearchController::class,'index']);
         Route::post('/acount',[AcountController::class,'show']);
         Route::post('/acount',[AcountController::class,'edit']);
         Route::post('/acount',[AcountController::class,'update']);
         Route::get('/shop',[ShopController::class,'show']);
-        Route::get('/review',[ReviewController::class,'create']);
+        Route::get('/review',[ReviewController::class,'create'])->name('review.create');
         Route::get('/review/complete',[ReviewController::class,'store']);
     });
 
@@ -61,3 +63,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shops.show');
