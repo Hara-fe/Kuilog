@@ -2,37 +2,38 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Providers\AppServiceProvider;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades;
-use App\Http\Models\Shop;
+use App\Models\Shop;
 
 class SearchController extends Controller
 {
-    //
-    public function index(Request $request)
+    public function index()
     {
-        $query = Shop::where('active', 1);
+        $shops = collect(); // 空のコレクションを渡す
 
-        if ($request->filled('keyword')) {
-            $query->where('name', 'like', '%' . $request->keyword . '%');
-        }
+        return view('search.index', compact('shops'));
+    }
+
+    public function result(Request $request)
+    {
+        $query = Shop::query()->with('area', 'category');
 
         if ($request->filled('area_id')) {
-            $query->where('area_id', $request->area_id);
+            $query->where('area_id', $request->input('area_id'));
+        }
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->input('category_id'));
         }
 
         if ($request->filled('rating')) {
             $query->whereHas('reviews', function ($q) use ($request) {
-                $q->where('rating', '>=', $request->rating);
+                $q->havingRaw('AVG(review) >= ?', [$request->input('rating')]);
             });
         }
 
-        $shops = $query->paginate(10);
+        $shops = $query->get();
 
-        return view('search.index', compact('shops'));
+        return view('search.result', compact('shops'));
     }
 }

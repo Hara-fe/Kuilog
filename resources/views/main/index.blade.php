@@ -11,15 +11,20 @@
             検索
         </button>
     </form>
+<div class="text-center mt-6">
+    <a href="{{ route('search.index') }}" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+        店舗を検索する
+    </a>
+</div>
 
-    @can('admin')
-    <div class="flex justify-end mb-6">
-        <a href="{{ route('main.create') }}"
-           class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
-            店舗を登録する
-        </a>
-    </div>
-    @endcan
+        @can('admin')
+        <div class="flex justify-end mb-6">
+            <a href="{{ route('main.create') }}"
+            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+                店舗登録へ
+            </a>
+        </div>
+        @endcan
 
         @auth
         <div class="flex justify-end mb-6">
@@ -56,6 +61,8 @@
                         ジャンル: {{ $shop->category?->type ?? '未分類' }}
                     </span>
                 </p>
+                <p class="text-sm text-gray-600">エリア: {{ $shop->area?->name ?? '未登録' }}</p>
+
             </div>
         @endforeach
     </div>

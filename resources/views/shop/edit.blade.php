@@ -18,13 +18,15 @@
             <textarea name="information" class="w-full border px-3 py-2 rounded">{{ old('information', $shop->information) }}</textarea>
         </div>
 
-        <div class="mb-4">
-        <label for="active" class="block text-gray-700 font-medium mb-1">ステータス</label>
-        <select name="active" id="active" class="w-full border p-2 rounded">
-            <option value="1" {{ $shop->active == 1 ? 'selected' : '' }}>公開</option>
-            <option value="0" {{ $shop->active == 0 ? 'selected' : '' }}>非公開</option>
-        </select>
-    </div>
+       <div class="mb-4">
+            <label for="active" class="block text-gray-700 font-medium mb-1">公開状態</label>
+            <label class="flex items-center space-x-2">
+                <input type="checkbox" name="active" id="active" value="1"
+                    class="form-checkbox h-5 w-5 text-blue-600"
+                    {{ $shop->active ? 'checked' : '' }}>
+                <span>{{ $shop->active ? '公開中' : '非公開' }}</span>
+            </label>
+        </div>
 
     <button type="submit"
         class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">更新する</button>

@@ -32,4 +32,9 @@ class Shop extends Model
         return $this->hasmany(Review::class);
     }
 
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+
 }

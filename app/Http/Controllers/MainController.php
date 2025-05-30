@@ -16,7 +16,7 @@ class MainController extends Controller
     public function index(Request $request)
     {
 
-        $query = \App\Models\Shop::with('category')->where('active', 1);
+        $query = \App\Models\Shop::with(['category','area'])->where('active', 1);
 
         if ($request->filled('keyword')) {
             $query->where('name', 'like', '%' . $request->keyword . '%');

@@ -34,7 +34,9 @@ Route::get('/register/complete', function () {
 
 // メイン画面・検索・店舗詳細（全体公開）
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
-Route::get('/search', [SearchController::class, 'index']);
+Route::get('/search', [SearchController::class, 'index'])->name('search.index');
+Route::get('/search/result', [SearchController::class, 'result'])->name('search.result');
+
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 // 全ユーザーがアクセス可能なルート（ログイン+権限）

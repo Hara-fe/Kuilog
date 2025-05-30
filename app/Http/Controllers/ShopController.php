@@ -34,10 +34,14 @@ class ShopController extends Controller
 
         $shop->name = $request->input('name');
         $shop->information = $request->input('information');
-        $shop->active = $request->input('active'); // ←追加
+
+        // チェックされているなら1、そうでなければ0
+        $shop->active = $request->has('active') ? 1 : 0;
 
         $shop->save();
 
-        return redirect()->route('shop.show', ['id' => $shop->id])->with('success', '店舗情報を更新しました。');
+        return redirect()->route('shop.show', ['id' => $shop->id])
+            ->with('success', '店舗情報を更新しました。');
     }
+
 }
