@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('shop_id'); // ✅ 修正箇所
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->string('title');
             $table->timestamps();
 

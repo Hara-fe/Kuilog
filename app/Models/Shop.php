@@ -37,4 +37,9 @@ class Shop extends Model
         return $this->belongsTo(Area::class);
     }
 
+    public function images()
+    {
+        return $this->hasmany(Image::class);
+    }
+
 }
