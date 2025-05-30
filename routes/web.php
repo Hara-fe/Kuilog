@@ -47,7 +47,7 @@ Route::middleware(['auth', 'can:all_user'])->group(function () {
     // アカウント情報関連
     Route::get('/acount/{id}', [AcountController::class, 'show'])->name('acount.show');
     Route::get('/acount/edit/{id}', [AcountController::class, 'edit'])->name('acount.edit');
-    Route::post('/acount/update', [AcountController::class, 'update'])->name('acount.update');
+    Route::put('/acount/update/{id}', [AcountController::class, 'update'])->name('acount.update');
 
     // 口コミ投稿ページ
     Route::get('/review/{shop}', [ReviewController::class, 'create'])->name('review.create');
@@ -61,7 +61,7 @@ Route::middleware(['auth', 'can:admin'])->group(function () {
     // 管理画面（ユーザー一覧）
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
     Route::get('/admin/edit/{id}', [AdminController::class, 'edit'])->name('admin.edit');
-    Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
+Route::put('/admin/update/{id}', [AdminController::class, 'update'])->name('admin.update');
     Route::delete('/admin/delete/{id}', [AdminController::class, 'destroy'])->name('admin.destroy');
 
     // 店舗登録系
@@ -79,3 +79,5 @@ Route::middleware(['auth', 'can:admin'])->group(function () {
 
 // Laravel Breeze の認証関連
 require __DIR__.'/auth.php';
+
+

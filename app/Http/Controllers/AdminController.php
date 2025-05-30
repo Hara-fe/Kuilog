@@ -39,5 +39,12 @@ class AdminController extends Controller
 
         return redirect()->route('admin.index')->with('success', 'ユーザー情報を更新しました');
     }
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('admin.index')->with('success', 'ユーザーを削除しました');
+    }
 
 }

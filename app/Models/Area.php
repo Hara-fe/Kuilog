@@ -9,7 +9,7 @@ class Area extends Model
 {
     /** @use HasFactory<\Database\Factories\AreaFactory> */
     use HasFactory;
-    protected $fillable = ['name']; // 都道府県や地域名など
+    protected $fillable = ['name']; // 都道府県
 
     public function shops()
     {
