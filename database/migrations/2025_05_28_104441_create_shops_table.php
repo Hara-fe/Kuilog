@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->string('name');
                 $table->text('information');
                 $table->string('filename')->nullable();
-                $table->string('active')->nullable();
+                $table->string('active')->nullable()->default(1);
                 $table->timestamps();
                 $table->unsignedBigInteger('category_id');
                 $table->unsignedBigInteger('area_id');
