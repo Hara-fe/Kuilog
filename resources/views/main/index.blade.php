@@ -47,7 +47,7 @@
     <div class="space-y-6">
         @foreach($shops as $shop)
             <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
-                <a href="{{ route('shops.show', $shop->id) }}" class="text-xl font-semibold text-blue-600 hover:underline">
+                <a href="{{ route('shop.show', $shop->id) }}" class="text-xl font-semibold text-blue-600 hover:underline">
                     {{ $shop->name }}
                 </a>
                 <p class="text-gray-700 mt-2">{{ $shop->information }}</p>

@@ -17,19 +17,27 @@ class ShopController extends Controller
     //
     public function show($id)
     {
-        $shop = Shop::with('category')->findOrFail($id);
+        $shop = Shop::with('reviews.user')->findOrFail($id);
         return view('shop.show', compact('shop'));
     }
 
-    public function edit(){ //お店の情報を編集
 
-    }
-    
-    public function update(){ //編集の確認画面＋DBに送信
+    public function edit($id)
+{
+    $shop = Shop::findOrFail($id);
+    return view('shop.edit', compact('shop'));
+}
 
-    }
+    public function update(Request $request, $id)
+    {
+        $shop = Shop::findOrFail($id);
 
-    public function seeing(){ //口コミ閲覧
+        $shop->name = $request->input('name');
+        $shop->information = $request->input('information');
+        $shop->active = $request->input('active'); // ←追加
 
+        $shop->save();
+
+        return redirect()->route('shop.show', ['id' => $shop->id])->with('success', '店舗情報を更新しました。');
     }
 }

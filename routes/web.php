@@ -35,7 +35,7 @@ Route::get('/register/complete', function () {
 // メイン画面・検索・店舗詳細（全体公開）
 Route::get('/main', [MainController::class, 'index'])->name('main.index');
 Route::get('/search', [SearchController::class, 'index']);
-Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shops.show');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 // 全ユーザーがアクセス可能なルート（ログイン+権限）
 Route::middleware(['auth', 'can:all_user'])->group(function () {
@@ -65,10 +65,15 @@ Route::middleware(['auth', 'can:admin'])->group(function () {
     // 店舗登録系
     Route::post('/shop/register', [ShopController::class, 'create']);
     Route::post('/shop/register/complete', [ShopController::class, 'store']);
-    Route::post('/shop/edit', [ShopController::class, 'edit']);
-    Route::post('/shop/update', [ShopController::class, 'update']);
     Route::post('/shop/review_seeing', [ShopController::class, 'seeing']);
 });
+    //店舗編集(管理者のみ)
+    Route::middleware(['auth', 'can:admin'])->group(function () {
+    Route::get('/shop/edit/{id}', [ShopController::class, 'edit'])->name('shop.edit');
+    Route::put('/shop/update/{id}', [ShopController::class, 'update'])->name('shop.update');
+});
+
+
 
 // Laravel Breeze の認証関連
 require __DIR__.'/auth.php';

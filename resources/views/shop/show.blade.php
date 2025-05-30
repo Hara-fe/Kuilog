@@ -20,13 +20,32 @@
                     メニュー: {{ $shop->category?->label ?? '未分類' }}
                 </span>
             </p>
-        </div>
+             @can('admin')
+                <a href="{{ route('shop.edit', $shop->id) }}"
+                class="inline-block bg-yellow-500 text-white text-sm font-semibold px-4 py-2 rounded hover:bg-yellow-600 transition">
+                    編集する
+                </a>
+            @endcan
+        </div>  
 
         <div class="mt-6">
             <a href="{{ route('review.create', ['shop' => $shop->id]) }}"
             class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
             口コミ投稿
             </a>
+            <h2 class="text-xl font-bold mt-6 mb-2">口コミ</h2>
+
+            @if($shop->reviews->isEmpty())
+                <p class="text-gray-600">まだ口コミはありません。</p>
+            @else
+                @foreach($shop->reviews as $review)
+                    <div class="border rounded p-4 mb-4">
+                        <p class="text-sm text-gray-700">評価: {{ $review->review }} / 5</p>
+                        <p class="text-gray-800">{{ $review->comment }}</p>
+                        <p class="text-xs text-gray-500 mt-2">投稿者: {{ $review->user->name ?? '不明' }} / 投稿日: {{ $review->created_at->format('Y-m-d') }}</p>
+                    </div>
+                @endforeach
+            @endif
 
         </div>
     </div>
