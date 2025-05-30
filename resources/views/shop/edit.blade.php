@@ -18,6 +18,15 @@
             <textarea name="information" class="w-full border px-3 py-2 rounded">{{ old('information', $shop->information) }}</textarea>
         </div>
 
+        <label for="area_id">エリア</label>
+            <select name="area_id" id="area_id" class="w-full border p-2 rounded">
+                @foreach ($areas as $area)
+                    <option value="{{ $area->id }}" {{ $shop->area_id == $area->id ? 'selected' : '' }}>
+                        {{ $area->name ?? $area->prefecture }}
+                    </option>
+                @endforeach
+            </select>
+
        <div class="mb-4">
             <label for="active" class="block text-gray-700 font-medium mb-1">公開状態</label>
             <label class="flex items-center space-x-2">

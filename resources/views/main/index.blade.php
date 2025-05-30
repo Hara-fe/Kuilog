@@ -61,7 +61,7 @@
                         ジャンル: {{ $shop->category?->type ?? '未分類' }}
                     </span>
                 </p>
-                <p class="text-sm text-gray-600">エリア: {{ $shop->area?->name ?? '未登録' }}</p>
+                <p class="text-sm text-gray-600">エリア: {{ $shop->area?->prefecture ?? '未登録' }}</p>
 
             </div>
         @endforeach
