@@ -9,6 +9,8 @@ use App\Providers\AppServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades;
 use App\Models\Shop;
+use Illuminate\Support\Facades\Storage;
+use App\Models\Image;
 
 class MainController extends Controller
 {
@@ -45,16 +47,35 @@ public function store(Request $request)
         'active' => 'required|in:0,1',
     ]);
 
+    $filename = null;
+
     if ($request->hasFile('filename')) {
-        $path = $request->file('filename')->store('images', 'public');
-        $validated['filename'] = basename($path);
+        $filename = $request->file('filename')->store('shops', 'public');
+        info('ファイルアップロード成功: ' . $filename);
     } else {
-        $validated['filename'] = '';
+        info('ファイルアップロードなし');
     }
 
-    $validated['owner_id'] = Auth::id();
+    $shop = Shop::create([
+        'name' => $validated['name'],
+        'information' => $validated['information'],
+        'category_id' => $validated['category_id'],
+        'area_id' => $validated['area_id'],
+        'local' => $validated['local'],
+        'on_off' => $validated['on_off'],
+        'active' => $validated['active'],
+        'owner_id' => Auth::id(),
+        // 'filename' => $filename, ← 不要なら削除
+    ]);
 
-    Shop::create($validated);
+
+    if ($filename) {
+        Image::create([
+            'shop_id' => $shop->id,
+            'filename' => $filename,
+            'title' => $shop->name
+        ]);
+    }
 
     return redirect()->route('main.index')->with('success', '店舗を登録しました。');
 }

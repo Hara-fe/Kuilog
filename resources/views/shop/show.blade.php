@@ -28,11 +28,25 @@
             @endcan
         </div>  
 
-        <div class="mt-6">
-            <a href="{{ route('review.create', ['shop' => $shop->id]) }}"
-            class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
-            口コミ投稿
-            </a>
+        <div class="mt-6 flex items-center justify-between">
+    <!-- 口コミ投稿ボタン（左） -->
+    <a href="{{ route('review.create', ['shop' => $shop->id]) }}"
+       class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600">
+       口コミ投稿
+    </a>
+
+    @if($shop->images->isNotEmpty())
+        <div class="flex space-x-4 max-w-xl">
+            @foreach($shop->images as $image)
+                <img src="{{ asset('storage/' . $image->filename) }}" alt="ショップ画像"
+                     class="h-32 w-auto object-cover rounded">
+            @endforeach
+        </div>
+    @else
+        <p class="text-gray-500">画像は登録されていません。</p>
+    @endif
+</div>
+            
             <h2 class="text-xl font-bold mt-6 mb-2">口コミ</h2>
 
             @if($shop->reviews->isEmpty())

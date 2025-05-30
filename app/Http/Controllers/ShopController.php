@@ -18,7 +18,7 @@ class ShopController extends Controller
     //
     public function show($id)
     {
-        $shop = Shop::with('reviews.user')->findOrFail($id);
+        $shop = Shop::with('images','reviews.user')->findOrFail($id);
         return view('shop.show', compact('shop'));
     }
 

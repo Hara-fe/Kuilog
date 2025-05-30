@@ -17,7 +17,7 @@ return new class extends Migration
                 $table->unsignedBigInteger('owner_id');
                 $table->string('name');
                 $table->text('information');
-                $table->string('filename');
+                $table->string('filename')->nullable();
                 $table->string('active')->nullable();
                 $table->timestamps();
                 $table->unsignedBigInteger('category_id');

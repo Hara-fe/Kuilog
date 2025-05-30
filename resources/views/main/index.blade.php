@@ -55,6 +55,15 @@
                 <a href="{{ route('shop.show', $shop->id) }}" class="text-xl font-semibold text-blue-600 hover:underline">
                     {{ $shop->name }}
                 </a>
+
+                {{-- 画像差し込み --}}
+        @if($shop->images->isNotEmpty())
+            <img src="{{ asset('storage/' . $shop->images->first()->filename) }}" alt="店舗画像" class="mt-4 w-16 h-16 object-cover rounded">
+        @else
+            <div class="mt-4 w-16 h-16 bg-gray-200 rounded flex items-center justify-center text-gray-400 text-sm">
+                画像なし
+            </div>
+        @endif
                 <p class="text-gray-700 mt-2">{{ $shop->information }}</p>
                 <p class="mt-4">
                     <span class="inline-block bg-gray-200 text-sm text-gray-800 px-3 py-1 rounded-full">
